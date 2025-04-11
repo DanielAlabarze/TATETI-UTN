@@ -10,6 +10,7 @@ const modal = document.querySelector('.modal');
 // Selecciona los elementos HTML que muestran el contador de victorias para X y O.
 const counterTextX = document.querySelector('.counterX');
 const counterTextO = document.querySelector('.counterO');
+const counterTextEmpates = document.querySelector('.counterEmpates');
 // Selecciona el elemento HTML que representa la línea ganadora.
 let winningLine = document.querySelector('.winning-line');
 
@@ -21,13 +22,16 @@ resetHistorial.addEventListener('click', () => {
     // Guarda los contadores de X y O en localStorage con valor 0.
     localStorage.setItem("counterX", JSON.stringify(0));
     localStorage.setItem("counterO", JSON.stringify(0));
+    localStorage.setItem("counterEmpates", JSON.stringify(0));
     // Resetea las variables de contador a 0.
     counterO = 0;
     counterX = 0;
+    counterEmpates = 0;
 
     // Actualiza el texto de los contadores en la pantalla.
     counterTextX.textContent = 0;
     counterTextO.textContent = 0;
+    counterTextEmpates.textContent = 0;
 });
 
 // Define la variable 'turn' para controlar el turno actual (inicialmente "X").
@@ -55,6 +59,7 @@ let winner = "";
 // Recupera los contadores de X y O del localStorage o inicialízalos a 0.
 let counterX = localStorage.getItem("counterX") ? JSON.parse(localStorage.getItem("counterX")) : 0;
 let counterO = localStorage.getItem("counterO") ? JSON.parse(localStorage.getItem("counterO")) : 0;
+let counterEmpates = localStorage.getItem("counterEmpates") ? JSON.parse(localStorage.getItem("counterEmpates")) : 0;
 
 // Llama a la función Initial() al cargar la página.
 Initial();
@@ -87,7 +92,13 @@ squares.forEach((square, i) => {
                 counterPlace++;
 
                 // Si se han jugado todas las casillas y no hay ganador, es un empate.
-                if(counterPlace >= 9 && winner == "") { console.log("¡Es un empate!"); }
+                if(counterPlace >= 9 && winner == "") {
+                    console.log("¡Es un empate!");
+                    counterEmpates++; // Incrementa el contador de empates
+                    counterTextEmpates.textContent = counterEmpates; // Actualiza la pantalla
+                    localStorage.setItem("counterEmpates", JSON.stringify(counterEmpates)); // Guarda en localStorage
+                    showModal("¡Empate!"); // Muestra el modal de empate
+                }
             }
         }
     });
@@ -108,6 +119,7 @@ function Initial(){
     // Muestra los contadores de victorias en la pantalla.
     counterTextO.textContent = counterO;
     counterTextX.textContent = counterX;
+    counterTextEmpates.textContent = counterEmpates;
 
     // Si hay datos guardados en localStorage para los cuadrados, los carga.
     if(localStorage.getItem("squares")){
@@ -132,6 +144,7 @@ function Reset(){
     // Actualiza los contadores en la pantalla.
     counterTextO.textContent = counterO;
     counterTextX.textContent = counterX;
+    counterTextEmpates.textContent = counterEmpates;
     // Actualiza el icono del turno.
     iconTurn.forEach(icon => icon.textContent = turn );
     // Oculta la línea ganadora.
@@ -191,13 +204,15 @@ function Win(combinationWinner) {
     // Actualiza los contadores en la pantalla.
     counterTextO.textContent = counterO;
     counterTextX.textContent = counterX;
+    counterTextEmpates.textContent = counterEmpates;
 
     // Guarda los contadores actualizados en localStorage.
     localStorage.setItem("counterX", JSON.stringify(counterX));
     localStorage.setItem("counterO", JSON.stringify(counterO));
+    localStorage.setItem("counterEmpates", JSON.stringify(counterEmpates));
 
-    // Muestra la ventana modal.
-    modal.style.display = "flex";
+    // Muestra el modal con el mensaje de victoria y el ganador.
+    showModal("¡Victoria!", winner);
 
     // Encuentra el índice de la combinación ganadora en el array 'combinations'.
     let index = combinations.findIndex(combi => combi == combinationWinner);
@@ -205,4 +220,19 @@ function Win(combinationWinner) {
     // Muestra la línea ganadora y aplica la transformación CSS correspondiente.
     winningLine.style.display = "flex";
     winningLine.style.transform = winLines[index];
+}
+
+// Función para mostrar el modal con un mensaje dado.
+function showModal(message, winner) {
+    modal.querySelector(".title span").textContent = message;
+    const subtitle = modal.querySelector(".subtitle");
+
+    if (winner) {
+        subtitle.textContent = `Ha ganado ${winner}`;
+        subtitle.style.display = "block"; // Asegura que se muestre
+    } else {
+        subtitle.style.display = "none"; // Oculta el subtítulo en caso de empate
+    }
+
+    modal.style.display = "flex";
 }

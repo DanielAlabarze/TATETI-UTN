@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+ 
     <div class="board">
         <div class="square"></div>
         <div class="square"></div>
@@ -23,17 +24,25 @@
     <a class="reset">Reiniciar</a>
 
     <div class="turn">
-        <p>Turno: <span class="icon-turn">X</span></p>
+        <p>Turno de <span class="icon-turn">X</span></p>
         <p>Victorias de X: <span class="counterX"></span></p>
         <p>Victorias de O: <span class="counterO"></span></p>
+        <p>Empates: <span class="counterEmpates"></span></p>
         <a class="btn">Reiniciar Historial</a>
     </div>
-
+<!-- 
     <div class="modal">
         <h1 class="title">¡Victoria!</h1>
         <p class="subtitle">Ha ganado <span class="icon-turn"></span></p>
         <a class="reset modal-btn">Reiniciar</a>
+    </div> -->
+
+    <div class="modal">
+        <h1 class="title"><span></span></h1>
+        <p class="subtitle"><span class="icon-turn"></span></p>
+        <a class="reset modal-btn">Reiniciar</a>
     </div>
+
 
     <script src="function.js"></script>
 </body>
