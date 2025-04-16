@@ -97,7 +97,7 @@ squares.forEach((square, i) => {
                     counterEmpates++; // Incrementa el contador de empates
                     counterTextEmpates.textContent = counterEmpates; // Actualiza la pantalla
                     localStorage.setItem("counterEmpates", JSON.stringify(counterEmpates)); // Guarda en localStorage
-                    showModal("¡Empate!"); // Muestra el modal de empate
+                    showModal("¡ Empate !"); // Muestra el modal de empate
                 }
             }
         }
@@ -212,7 +212,7 @@ function Win(combinationWinner) {
     localStorage.setItem("counterEmpates", JSON.stringify(counterEmpates));
 
     // Muestra el modal con el mensaje de victoria y el ganador.
-    showModal("¡Victoria!", winner);
+    showModal("¡ Victoria !", winner);
 
     // Encuentra el índice de la combinación ganadora en el array 'combinations'.
     let index = combinations.findIndex(combi => combi == combinationWinner);
@@ -228,7 +228,7 @@ function showModal(message, winner) {
     const subtitle = modal.querySelector(".subtitle");
 
     if (winner) {
-        subtitle.textContent = `Ha ganado ${winner}`;
+        subtitle.textContent = `Gano ➡ ${winner}`;
         subtitle.style.display = "block"; // Asegura que se muestre
     } else {
         subtitle.style.display = "none"; // Oculta el subtítulo en caso de empate

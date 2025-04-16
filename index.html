@@ -1,49 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Daniel Alabarze" />
+    <meta name="description" content="Juego Ta Te Ti" />
+    <meta
+      name="keywords"
+      content="Alabarze Daniel,Juegos, Ta Te Ti; front end developer, desarrollo web, HTML, CSS, JavaScript, React"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Juego Ta Te Tí" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Juego Ta Te Tí" />
+    <meta property="og:image" content="./img/tatetiIco.ico" />
+    <meta
+      property="og:url"
+      content="https://danielalabarze.github.io/TaTeTi/"
+    />
     <title>Ta Te Tí</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
- 
-    <div class="board">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+    <link
+      rel="shortcut icon"
+      sizes="16x16 24x24 32x32 48x48"
+      href="./img/tatetiIco.ico"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="content-language" content="es" />
+  </head>
+
+  <body>
+    <div class="containerJugadorBoard">
+      <div class="turnoJugador">
+        <p class="pturnoJugador">Turno<br /><span class="icon-turn">X</span></p>
+      </div>
+      <div class="boardCointainer">
+        <div class="board">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="winning-line"></div>
+      </div>
     </div>
-    <div class="winning-line"></div>
 
-    <a class="reset">Reiniciar</a>
-
-    <div class="turn">
-        <p>Turno de <span class="icon-turn">X</span></p>
-        <p>Victorias de X: <span class="counterX"></span></p>
-        <p>Victorias de O: <span class="counterO"></span></p>
-        <p>Empates: <span class="counterEmpates"></span></p>
+    <div class="containerResultados">
+      <div class="resetHistory">
         <a class="btn">Reiniciar Historial</a>
+      </div>
+
+      <div class="turn">
+        <p class="parrafoResultados">
+          Victorias X <br /><span class="counterX"></span>
+        </p>
+        <p class="parrafoResultados">
+          Victorias O <br /><span class="counterO"></span>
+        </p>
+        <p class="parrafoResultados">
+          Empates <br /><span class="counterEmpates"></span>
+        </p>
+      </div>
+      <div class="containerReset">
+        <a class="reset">Reiniciar</a>
+      </div>
     </div>
-<!-- 
-    <div class="modal">
-        <h1 class="title">¡Victoria!</h1>
-        <p class="subtitle">Ha ganado <span class="icon-turn"></span></p>
-        <a class="reset modal-btn">Reiniciar</a>
-    </div> -->
 
     <div class="modal">
-        <h1 class="title"><span></span></h1>
-        <p class="subtitle"><span class="icon-turn"></span></p>
-        <a class="reset modal-btn">Reiniciar</a>
+      <h1 class="title"><span></span></h1>
+      <p class="subtitle"><span class="icon-turn"></span></p>
     </div>
-
 
     <script src="function.js"></script>
-</body>
+  </body>
 </html>
