@@ -228,7 +228,7 @@ function showModal(message, winner) {
     const subtitle = modal.querySelector(".subtitle");
 
     if (winner) {
-        subtitle.textContent = `Gano ➡ ${winner}`;
+        subtitle.textContent = `Gano  ${winner}`;
         subtitle.style.display = "block"; // Asegura que se muestre
     } else {
         subtitle.style.display = "none"; // Oculta el subtítulo en caso de empate
